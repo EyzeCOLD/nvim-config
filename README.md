@@ -1,0 +1,4 @@
+- Lazy
+- Mason
+- nvim-lspconfig
+- Tokyonight
