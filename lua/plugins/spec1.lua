@@ -23,5 +23,8 @@ return
 		config = function(_, opts)
 		require("42header").setup(opts)
 		end,
+	},
+	{
+		"EyzeCOLD/nvim-function-linecount",
 	}
 }

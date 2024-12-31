@@ -2,6 +2,7 @@ require("config.lazy")
 require("mason").setup()
 require("mason-lspconfig").setup()
 require("lspconfig").clangd.setup {}
+require("lspconfig").lua_ls.setup {}
 require("tokyonight").setup({
 	style = "moon",
 	styles = {
@@ -13,6 +14,7 @@ require("tokyonight").setup({
 	colors.error = "#ff0000"
 	end
 })
+require("nvim-function-linecount")
 --------------------------------------------------------------------------------
 vim.cmd[[colorscheme tokyonight-moon]]
 vim.o.shiftwidth = 4
