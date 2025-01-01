@@ -22,7 +22,7 @@ vim.o.tabstop = 4
 vim.wo.number = true
 vim.opt.colorcolumn = "81"
 vim.cmd("highlight ColorColumn ctermbg=0 guibg=#ff0000")
-vim.keymap.set('n', '<F7>', '<CMD> tabp <CR>', {silent = true})
-vim.keymap.set('n', '<F8>', '<CMD> tabn <CR>', {silent = true})
-vim.keymap.set('i', '<F7>', '<ESC> <CMD> tabp <CR>', {silent = true})
-vim.keymap.set('i', '<F8>', '<ESC> <CMD> tabn <CR>', {silent = true})
+vim.keymap.set('n', '<Up>', '<C-w>k', {silent = true})
+vim.keymap.set('n', '<Down>', '<C-w>j', {silent = true})
+vim.keymap.set('n', '<Left>', '<C-w>h', {silent = true})
+vim.keymap.set('n', '<Right>', '<C-w>l', {silent = true})
