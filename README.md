@@ -1,7 +1,11 @@
-- Lazy
-    ● mason-lspconfig
-    ● mason
-    ● nvim-function-linecount
-    ● nvim-lspconfig
-    ● tokyonight.nvim
-    ● 42-header
+lazy.nvim
+- mason-lspconfig.nvim
+- mason.nvim
+- neo-tree.nvim
+- nui.nvim
+- nvim-function-linecount
+- nvim-lspconfig
+- nvim-web-devicons
+- plenary.nvim
+- tokyonight.nvim
+- 42-header.nvim

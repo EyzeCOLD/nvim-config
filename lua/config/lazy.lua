@@ -18,8 +18,20 @@ vim.opt.rtp:prepend(lazypath)
 -- Make sure to setup `mapleader` and `maplocalleader` before
 -- loading lazy.nvim so that mappings are correct.
 -- This is also a good place to setup other settings (vim.opt)
-vim.g.mapleader = " "
-vim.g.maplocalleader = "\\"
+vim.g.mapleader = "\\"
+vim.g.maplocalleader = ","
+vim.o.shiftwidth = 4
+vim.o.tabstop = 4
+vim.wo.number = true
+vim.opt.colorcolumn = "81"
+vim.keymap.set('n', '<Up>', '<C-w>k', {silent = true})
+vim.keymap.set('n', '<Down>', '<C-w>j', {silent = true})
+vim.keymap.set('n', '<Left>', '<C-w>h', {silent = true})
+vim.keymap.set('n', '<Right>', '<C-w>l', {silent = true})
+vim.keymap.set('n', '<C-Left>', '<cmd>:tabprev<CR>', {silent = true})
+vim.keymap.set('n', '<C-Right>', '<cmd>:tabnext<CR>', {silent = true})
+vim.keymap.set('n', '``', '<cmd>:Neotree toggle=true reveal=true<CR>', {silent = true})
+vim.keymap.set('n', '<Leader>e', '<cmd>lua vim.diagnostic.open_float()<CR>', {silent = true})
 
 -- Setup lazy.nvim
 require("lazy").setup({
