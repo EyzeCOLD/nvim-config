@@ -17,4 +17,3 @@ require("tokyonight").setup({
 require("nvim-function-linecount")
 --------------------------------------------------------------------------------
 vim.cmd[[colorscheme tokyonight-moon]]
-vim.cmd("highlight ColorColumn ctermbg=0 guibg=#ff0000")
