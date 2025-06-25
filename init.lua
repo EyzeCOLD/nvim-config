@@ -15,5 +15,6 @@ require("tokyonight").setup({
 	end
 })
 require("nvim-function-linecount")
+require("autoclose").setup()
 ------------------------------------------------------------------------------
 vim.cmd[[colorscheme tokyonight-moon]]
