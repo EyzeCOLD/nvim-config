@@ -57,3 +57,12 @@ vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help ta
 vim.keymap.set('n', '<leader>fd', builtin.lsp_definitions, { desc = 'Goto definition' })
 vim.keymap.set('n', '<leader>ft', builtin.lsp_type_definitions, { desc = 'Goto type definition' })
 vim.keymap.set('n', '<leader>fi', builtin.lsp_implementations, { desc = 'Goto implementation' })
+
+-- Formatting on write
+vim.api.nvim_create_autocmd("BufWritePre", {
+    pattern = { "*.c", "*.cpp", "*.h", "*.hpp" },
+    callback = function()
+        vim.lsp.buf.format({ async = false })
+    end,
+})
+
