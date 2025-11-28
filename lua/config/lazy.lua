@@ -26,16 +26,16 @@ vim.o.relativenumber = true
 vim.o.number = true
 vim.o.colorcolumn = "81"
 vim.diagnostic.config({ virtual_text = true })
-vim.keymap.set('n', '<Up>', '<C-w>k', {silent = true})
-vim.keymap.set('n', '<Down>', '<C-w>j', {silent = true})
-vim.keymap.set('n', '<Left>', '<C-w>h', {silent = true})
-vim.keymap.set('n', '<Right>', '<C-w>l', {silent = true})
-vim.keymap.set('n', '<C-Left>', '<cmd>:tabprev<CR>', {silent = true})
-vim.keymap.set('n', '<C-Right>', '<cmd>:tabnext<CR>', {silent = true})
-vim.keymap.set('n', '``', '<cmd>:Neotree toggle=true reveal=true<CR>', {silent = true})
-vim.keymap.set('n', '<Leader>e', '<cmd>lua vim.diagnostic.open_float()<CR>', {silent = true})
-vim.keymap.set('n', '<Leader>r', '<cmd>set relativenumber!<CR>', {silent = true})
-vim.keymap.set('n', '<Leader>p', '"0p', {silent = true})
+vim.keymap.set('n', '<Up>', '<C-w>k', {desc = 'Move to split above', silent = true})
+vim.keymap.set('n', '<Down>', '<C-w>j', {desc = 'Move to split below', silent = true})
+vim.keymap.set('n', '<Left>', '<C-w>h', {desc = 'Move to split to the left', silent = true})
+vim.keymap.set('n', '<Right>', '<C-w>l', {desc = 'Move to split to the right', silent = true})
+vim.keymap.set('n', '<C-Left>', '<cmd>:tabprev<CR>', {desc = 'Previous tab', silent = true})
+vim.keymap.set('n', '<C-Right>', '<cmd>:tabnext<CR>', {desc = 'Next tab', silent = true})
+vim.keymap.set('n', '``', '<cmd>:Neotree toggle=true reveal=true<CR>', {desc = 'Toggle Neotree', silent = true})
+vim.keymap.set('n', '<Leader>e', '<cmd>lua vim.diagnostic.open_float()<CR>', {desc = 'Open diagnostic messages in a pop-up', silent = true})
+vim.keymap.set('n', '<Leader>r', '<cmd>set relativenumber!<CR>', {desc = 'Toggle relative line numbers', silent = true})
+vim.keymap.set('n', '<Leader>p', '"0p', {desc = 'Yank from zero register', silent = true})
 
 -- Setup lazy.nvim
 require("lazy").setup({
