@@ -35,6 +35,7 @@ vim.keymap.set('n', '<C-Right>', '<cmd>:tabnext<CR>', {silent = true})
 vim.keymap.set('n', '``', '<cmd>:Neotree toggle=true reveal=true<CR>', {silent = true})
 vim.keymap.set('n', '<Leader>e', '<cmd>lua vim.diagnostic.open_float()<CR>', {silent = true})
 vim.keymap.set('n', '<Leader>r', '<cmd>set relativenumber!<CR>', {silent = true})
+vim.keymap.set('n', '<Leader>p', '"0p', {silent = true})
 
 -- Setup lazy.nvim
 require("lazy").setup({
