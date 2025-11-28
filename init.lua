@@ -12,6 +12,5 @@ require("tokyonight").setup({
 	colors.error = "#ff0000"
 	end
 })
-require("nvim-function-linecount")
 ------------------------------------------------------------------------------
 vim.cmd[[colorscheme tokyonight-moon]]
