@@ -25,6 +25,7 @@ vim.o.tabstop = 4
 vim.o.relativenumber = true
 vim.o.number = true
 vim.o.colorcolumn = "81"
+vim.o.termguicolors = true
 vim.diagnostic.config({ virtual_text = true })
 vim.keymap.set('n', '<Up>', '<C-w>k', {desc = 'Move to split above', silent = true})
 vim.keymap.set('n', '<Down>', '<C-w>j', {desc = 'Move to split below', silent = true})
@@ -58,6 +59,10 @@ vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help ta
 vim.keymap.set('n', '<leader>fd', builtin.lsp_definitions, { desc = 'Goto definition' })
 vim.keymap.set('n', '<leader>ft', builtin.lsp_type_definitions, { desc = 'Goto type definition' })
 vim.keymap.set('n', '<leader>fi', builtin.lsp_implementations, { desc = 'Goto implementation' })
+
+require('bufferline').setup{}
+vim.keymap.set('n', '<leader>v', '<cmd>BufferLineCyclePrev<CR>', {desc = 'Previous buffer', silent = true})
+vim.keymap.set('n', '<leader>b', '<cmd>BufferLineCycleNext<CR>', {desc = 'Next buffer', silent = true})
 
 -- Formatting on write
 vim.api.nvim_create_autocmd("BufWritePre", {
