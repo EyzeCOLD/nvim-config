@@ -1,4 +1,3 @@
-return
-{
+return {
 	"EyzeCOLD/nvim-function-linecount",
 }

@@ -1,5 +1,4 @@
-return
-{
+return {
 	"Diogo-ss/42-header.nvim",
 	cmd = { "Stdheader" },
 	keys = { "<F1>" },
@@ -8,9 +7,9 @@ return
 		auto_update = true, -- Update header when saving.
 		user = "juaho", -- Your user.
 		mail = "juaho@student.hive.fi", -- Your mail.
-	-- add other options.
+		-- add other options.
 	},
 	config = function(_, opts)
-	require("42header").setup(opts)
+		require("42header").setup(opts)
 	end,
 }
