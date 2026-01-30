@@ -1,6 +1,22 @@
 require("config.lazy")
-require("mason").setup()
-require("mason-lspconfig").setup()
+require("mason").setup({
+	ensure_installed = {
+		"black",
+		"prettier",
+	},
+	automatic_installation = true,
+})
+require("mason-lspconfig").setup({
+	ensure_installed = {
+		"clangd",
+		"cmake",
+		"gopls",
+		"lua_ls",
+		"stylua",
+		"ty",
+		"ts_ls",
+	},
+})
 require("tokyonight").setup({
 	style = "moon",
 	styles = {

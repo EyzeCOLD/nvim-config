@@ -13,6 +13,7 @@ return {
 				typescriptreact = { "prettier" },
 				lua = { "stylua" },
 				python = { "black" },
+				go = { "gofmt" },
 			},
 		})
 	end,
