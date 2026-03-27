@@ -7,7 +7,6 @@ return {
 			ensure_installed = {
 				"black",
 				"clangd",
-				"cmake",
 				"gopls",
 				"lua_ls",
 				"stylua",
