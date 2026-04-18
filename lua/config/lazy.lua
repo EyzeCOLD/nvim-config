@@ -74,7 +74,7 @@ vim.keymap.set(
 )
 vim.keymap.set(
 	"n",
-	"``",
+	"<Leader>`",
 	"<cmd>:Neotree toggle=true reveal=true<CR>",
 	{ desc = "Toggle Neotree", silent = true }
 )
