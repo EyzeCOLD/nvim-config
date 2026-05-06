@@ -12,6 +12,7 @@ return {
 				typescript = { "prettier" },
 				typescriptreact = { "prettier" },
 				css = { "prettier" },
+				json = { "prettier" },
 				lua = { "stylua" },
 				python = { "black" },
 				go = { "gofmt" },

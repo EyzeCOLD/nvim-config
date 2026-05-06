@@ -36,12 +36,42 @@ vim.o.number = true
 vim.o.colorcolumn = "81"
 vim.o.termguicolors = true
 vim.diagnostic.config({ virtual_text = true })
-vim.keymap.set("n", "<Up>", "<C-w>k", { desc = "Move to split above", silent = true })
-vim.keymap.set("n", "<Down>", "<C-w>j", { desc = "Move to split below", silent = true })
-vim.keymap.set("n", "<Left>", "<C-w>h", { desc = "Move to split to the left", silent = true })
-vim.keymap.set("n", "<Right>", "<C-w>l", { desc = "Move to split to the right", silent = true })
-vim.keymap.set("n", "<C-Left>", "<cmd>:tabprev<CR>", { desc = "Previous tab", silent = true })
-vim.keymap.set("n", "<C-Right>", "<cmd>:tabnext<CR>", { desc = "Next tab", silent = true })
+vim.keymap.set(
+	"n",
+	"<Up>",
+	"<C-w>k",
+	{ desc = "Move to split above", silent = true }
+)
+vim.keymap.set(
+	"n",
+	"<Down>",
+	"<C-w>j",
+	{ desc = "Move to split below", silent = true }
+)
+vim.keymap.set(
+	"n",
+	"<Left>",
+	"<C-w>h",
+	{ desc = "Move to split to the left", silent = true }
+)
+vim.keymap.set(
+	"n",
+	"<Right>",
+	"<C-w>l",
+	{ desc = "Move to split to the right", silent = true }
+)
+vim.keymap.set(
+	"n",
+	"<C-Left>",
+	"<cmd>:tabprev<CR>",
+	{ desc = "Previous tab", silent = true }
+)
+vim.keymap.set(
+	"n",
+	"<C-Right>",
+	"<cmd>:tabnext<CR>",
+	{ desc = "Next tab", silent = true }
+)
 vim.keymap.set(
 	"n",
 	"<Leader>`",
@@ -60,7 +90,12 @@ vim.keymap.set(
 	"<cmd>set relativenumber!<CR>",
 	{ desc = "Toggle relative line numbers", silent = true }
 )
-vim.keymap.set({ "n", "v" }, "<Leader>p", '"0p', { desc = "Paste from zero register", silent = true })
+vim.keymap.set(
+	{ "n", "v" },
+	"<Leader>p",
+	'"0p',
+	{ desc = "Paste from zero register", silent = true }
+)
 
 -- Setup lazy.nvim
 require("lazy").setup({
@@ -76,17 +111,62 @@ require("lazy").setup({
 })
 
 local builtin = require("telescope.builtin")
-vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Telescope find files" })
-vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Telescope live grep" })
-vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Telescope buffers" })
-vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Telescope help tags" })
-vim.keymap.set("n", "<leader>fd", builtin.lsp_definitions, { desc = "Goto definition" })
-vim.keymap.set("n", "<leader>ft", builtin.lsp_type_definitions, { desc = "Goto type definition" })
-vim.keymap.set("n", "<leader>fi", builtin.lsp_implementations, { desc = "Goto implementation" })
+vim.keymap.set(
+	"n",
+	"<leader>ff",
+	builtin.find_files,
+	{ desc = "Telescope find files" }
+)
+vim.keymap.set(
+	"n",
+	"<leader>fg",
+	builtin.live_grep,
+	{ desc = "Telescope live grep" }
+)
+vim.keymap.set(
+	"n",
+	"<leader>fb",
+	builtin.buffers,
+	{ desc = "Telescope buffers" }
+)
+vim.keymap.set(
+	"n",
+	"<leader>fh",
+	builtin.help_tags,
+	{ desc = "Telescope help tags" }
+)
+vim.keymap.set(
+	"n",
+	"<leader>fd",
+	builtin.lsp_definitions,
+	{ desc = "Goto definition" }
+)
+vim.keymap.set(
+	"n",
+	"<leader>ft",
+	builtin.lsp_type_definitions,
+	{ desc = "Goto type definition" }
+)
+vim.keymap.set(
+	"n",
+	"<leader>fi",
+	builtin.lsp_implementations,
+	{ desc = "Goto implementation" }
+)
 
 require("bufferline").setup({})
-vim.keymap.set("n", "<leader>v", "<cmd>BufferLineCyclePrev<CR>", { desc = "Previous buffer", silent = true })
-vim.keymap.set("n", "<leader>b", "<cmd>BufferLineCycleNext<CR>", { desc = "Next buffer", silent = true })
+vim.keymap.set(
+	"n",
+	"<leader>v",
+	"<cmd>BufferLineCyclePrev<CR>",
+	{ desc = "Previous buffer", silent = true }
+)
+vim.keymap.set(
+	"n",
+	"<leader>b",
+	"<cmd>BufferLineCycleNext<CR>",
+	{ desc = "Next buffer", silent = true }
+)
 
 -- Autoformatting on write with Conform
 vim.api.nvim_create_autocmd("BufWritePre", {
@@ -95,44 +175,4 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 	end,
 })
 
--- GIT DIFF IN NEOVIM WHOO
-vim.api.nvim_create_user_command("DiffRev", function(opts)
-	local rev = "HEAD"
-	if opts.args ~= "" then
-		rev = opts.args
-	end
-	local abs_file = vim.fn.expand("%:p")
-
-	local git_root = vim.fn.systemlist("git rev-parse --show-toplevel")[1]
-	if vim.v.shell_error ~= 0 then
-		vim.notify("DiffRev: not in a git repository", vim.log.levels.ERROR)
-		return
-	end
-
-	local rel_file = abs_file:sub(#git_root + 2) -- +2 to also strip the trailing slash
-
-	local result = vim.fn.systemlist("git show " .. vim.fn.shellescape(rev .. ":" .. rel_file))
-	if vim.v.shell_error ~= 0 then
-		vim.notify("DiffRev: git error: " .. table.concat(result, "\n"), vim.log.levels.ERROR)
-		return
-	end
-
-	local buf = vim.api.nvim_create_buf(false, true)
-	vim.api.nvim_buf_set_lines(buf, 0, -1, false, result)
-
-	local fake_name = vim.fn.fnamemodify(rel_file, ":t:r") .. "[" .. rev .. "]." .. vim.fn.fnamemodify(rel_file, ":e")
-	vim.api.nvim_buf_set_name(buf, fake_name)
-
-	vim.bo[buf].buftype = "nofile"
-	vim.bo[buf].filetype = vim.bo.filetype
-
-	vim.cmd("vert sbuffer " .. buf)
-	vim.cmd("diffthis | wincmd p | diffthis")
-end, { nargs = "?" })
-
-vim.keymap.set(
-	"n",
-	"<leader>d",
-	"<cmd>DiffRev origin/main<CR>",
-	{ desc = "Git diff against origin/main", silent = true }
-)
+require("diffrev")
