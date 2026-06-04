@@ -86,6 +86,12 @@ vim.keymap.set(
 )
 vim.keymap.set(
 	"n",
+	"<Leader>q",
+	"<cmd>lua vim.diagnostic.setqflist()<CR>",
+	{ desc = "Open diagnostic messages to quickfix list", silent = true }
+)
+vim.keymap.set(
+	"n",
 	"<Leader>r",
 	"<cmd>set relativenumber!<CR>",
 	{ desc = "Toggle relative line numbers", silent = true }
@@ -173,6 +179,86 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 	callback = function(args)
 		require("conform").format({ bufnr = args.buf })
 	end,
+})
+
+-- Quickfix List
+vim.keymap.set(
+	"n",
+	"<leader>co",
+	"<cmd>copen<CR>",
+	{ desc = "Quickfix open", silent = true }
+)
+vim.keymap.set(
+	"n",
+	"<leader>cc",
+	"<cmd>cclose<CR>",
+	{ desc = "Quickfix close", silent = true }
+)
+vim.keymap.set(
+	"n",
+	"]c",
+	"<cmd>cnext<CR>",
+	{ desc = "Quickfix next", silent = true }
+)
+vim.keymap.set(
+	"n",
+	"[c",
+	"<cmd>cprev<CR>",
+	{ desc = "Quickfix prev", silent = true }
+)
+
+vim.keymap.set("n", "<leader>cd", function()
+	vim.ui.input({ prompt = "Quickfix do: " }, function(cmd)
+		if cmd ~= nil then
+			vim.cmd("cdo " .. cmd)
+		end
+	end)
+end, { desc = "Quickfix do", silent = true })
+
+vim.keymap.set("n", "<leader>cfd", function()
+	vim.ui.input({ prompt = "Quickfix do per file: " }, function(cmd)
+		if cmd ~= nil then
+			vim.cmd("cfdo " .. cmd)
+		end
+	end)
+end, { desc = "Quickfix do per file", silent = true })
+
+vim.keymap.set("n", "<leader>m", function()
+	vim.ui.input({ prompt = "Make args: " }, function(args)
+		if args ~= nil then
+			vim.cmd("make " .. args)
+		end
+	end)
+end, { desc = "Run make with args", silent = true })
+
+vim.keymap.set("n", "<leader>sh", function()
+	vim.ui.input({ prompt = "Run shell command: " }, function(cmd)
+		if cmd ~= nil then
+			local output = vim.fn.system(cmd .. " 2>&1")
+			vim.fn.setqflist({}, " ", { lines = vim.split(output, "\n") })
+			vim.cmd("copen")
+		end
+	end)
+end, { desc = "Run shell command", silent = true })
+
+vim.keymap.set("n", "<leader>s", function()
+	local word = vim.fn.expand("<cword>")
+	vim.fn.setreg("/", "\\<" .. word .. "\\>")
+	vim.opt.hlsearch = true
+end, { desc = "Search current word without jump", silent = true })
+
+vim.keymap.set("v", "<leader>s", function()
+	vim.cmd('normal! "9y')
+	local selection = vim.fn.getreg("9")
+	vim.fn.setreg("/", "\\V" .. vim.fn.escape(selection, "\\"))
+	vim.opt.hlsearch = true
+end, { desc = "Search current word without jump", silent = true })
+
+vim.filetype.add({
+	extension = {
+		asm = "nasm",
+		inc = "nasm",
+	},
 })
 
 require("diffrev")
