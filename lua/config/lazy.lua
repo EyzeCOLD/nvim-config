@@ -33,7 +33,8 @@ vim.o.shiftwidth = 4
 vim.o.tabstop = 4
 vim.o.relativenumber = true
 vim.o.number = true
-vim.o.colorcolumn = "81"
+vim.o.textwidth = 80
+vim.o.colorcolumn = "+1"
 vim.o.termguicolors = true
 vim.diagnostic.config({ virtual_text = true })
 vim.keymap.set(
