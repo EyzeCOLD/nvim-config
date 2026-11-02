@@ -10,9 +10,11 @@ return {
 				"gopls",
 				"lua_ls",
 				"stylua",
+				"eslint_d",
 				"prettier",
 				"ty",
 				"ts_ls",
+				"js-debug-adapter",
 			},
 		})
 	end,
